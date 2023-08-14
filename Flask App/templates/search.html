@@ -1,0 +1,19 @@
+{
+ "cells": [
+ <!DOCTYPE html>
+ <html>
+ <head>
+     <title>COVID-19 Vaccination Data Dashboard - Search</title>
+ </head>
+ <body>
+     <h1>COVID-19 Vaccination Data Dashboard</h1>
+     <h2>Search</h2>
+     <form method="POST" action="{{ url_for('search') }}">
+         <input type="text" name="query" placeholder="Enter location name">
+         <button type="submit">Search</button>
+     </form>
+     <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+ </body>
+ </html>
+ 
+}

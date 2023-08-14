@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID-19 Vaccination Data Dashboard - Search Results</title>
+</head>
+<body>
+    <h1>COVID-19 Vaccination Data Dashboard</h1>
+    <h2>Search Results for "{{ query }}"</h2>
+    <ul>
+        {% for result in results %}
+            <li><a href="{{ url_for('location_details', location_name=result['location']) }}">{{ result['location'] }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

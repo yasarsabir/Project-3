@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID-19 Vaccination Data Dashboard - Dashboard</title>
+</head>
+<body>
+    <h1>COVID-19 Vaccination Data Dashboard</h1>
+    <h2>Dashboard</h2>
+    <ul>
+        {% for location in data %}
+            <li><a href="{{ url_for('location_details', location_name=location['location']) }}">{{ location['location'] }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

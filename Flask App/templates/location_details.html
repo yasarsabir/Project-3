@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COVID-19 Vaccination Data Dashboard - Location Details</title>
+</head>
+<body>
+    <h1>COVID-19 Vaccination Data Dashboard</h1>
+    <h2>Location Details</h2>
+    {% if location %}
+        <h3>{{ location['location'] }}</h3>
+        <p>Total Vaccinations: {{ location['total_vaccinations'] }}</p>
+    {% else %}
+        <p>Location not found.</p>
+    {% endif %}
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>
