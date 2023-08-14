@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Leaflet Step-1</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin="" />
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+ <style>
+ 
+</style>
+</head>
+
+<body>
+<!-- Centered Title -->
+
+ <div class="centered-title">
+        <h1>Project 3: Team 2: An interactive map of COVID data around the world</h1>
+    </div>
+
+
+<!-- Dropdown for selecting countries -->
+<select id="countryDropdown"></select>
+
+ 
+  <!-- <select name="countries" id="country">
+    <option value="afghanistan">Afghanistan</option>
+    <option value="algeria">Algeria</option> -->
+    <!-- <option value="php">PHP</option>
+    <option value="java">Java</option>
+    <option value="golang">Golang</option>
+    <option value="python">Python</option>
+    <option value="c#">C#</option>
+    <option value="C++">C++</option>
+    <option value="erlang">Erlang</option> -->
+  <!-- /select -->
+
+  <!-- Centered Subtitle -->
+  <h2 class="centered-subtitle">Click on the marker to find the number of deaths per million for each country</h2>
+
+
+  <!-- The div that holds our map -->
+  <div id="map"></div>
+
+  <!-- Centered Subtitle -->
+<h2 class="centered-subtitle">World map showing Country Specific Data</h2>
+<h2 class="centered-subtitle2">Click on the marker for more data</h2>
+
+  <!-- The div that holds a second map -->
+  <div id="secondmap"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+  <!-- D3 JavaScript -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- Our JavaScript -->
+  <script type="text/javascript" src="static/js/logic.js"></script>
+</body>
+
+</html>
