@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>COVID-19 Vaccination</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>COVID-19 Statistic </h1>
+        <p>Interactive bar charts that shows various types of statistic.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">  
+          </div>
+        </div>
+      </div>
+      <div class="well">
+        <h5>Filter by Continent:</h5>
+        <select id="continentDropdown"></select>
+      </div>
+      <div class="well">
+        <h5>Filter by Date:</h5>
+        <select id="dateDropdown"></select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <div id="bar"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="scatter"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="table" class="well">
+
+        </div>
+      </div>
+    </div>
+     
+  </div>
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="app.js"></script>
+  
+
+
+</body>
+
+</html>

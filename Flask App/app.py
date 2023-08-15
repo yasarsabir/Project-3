@@ -27,7 +27,9 @@ print(data_dict["location"])
 # Dashboard page with list of locations
 @app.route('/')
 def dashboard():
-    return render_template('dashboard.html', data=data["location"])
+    return render_template('index.html')
+ #return render_template('dashboard.html', data=data["location"])
+
 
 # Location details page
 @app.route('/location/<string:location_name>')
