@@ -10,3 +10,8 @@ The aim of this project was to answer the following questions utilising differen
 
 The charts and visualisations used to answer the above can be found in the COVID-19 data project PowerPoint.
 
+
+We used plotly to create interactive charts
+We used FLASK to create a dashboard and multiple routes
+We used leaflet to create maps for visual display and used a novel leaflet plugin to create a credit conntrol on our map. We also used multiple tile layers and layer control.
+
