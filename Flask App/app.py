@@ -16,7 +16,7 @@ vaccination_data = [
 data = pd.read_csv(r"C:\Users\savyl\OneDrive\Desktop\GitHub\Project-3\Flask App\Resources\data.csv")
 
 data_dict = data.to_dict()
-print(data_dict["location"])
+# print(data_dict["location"])
 
 
 # Home page
@@ -26,11 +26,23 @@ print(data_dict["location"])
 
 # Dashboard page with list of locations
 @app.route('/')
-def dashboard():
+def home():
     return render_template('index.html')
+
+@app.route('/maps')
+def dashboard():
+    return render_template('maps.html')
  #return render_template('dashboard.html', data=data["location"])
 
+@app.route('/vaccine')
+def vaccine():
+    return render_template('vaccine.html')
 
+@app.route('/coviddata')
+def coviddata():
+        df=pd.read_json('./Resources/covid2.json',orient='records')
+        return df.to_json(orient='records')
+# record = list of disctionaries
 # Location details page
 @app.route('/location/<string:location_name>')
 def location_details(location_name):

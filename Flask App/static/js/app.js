@@ -1,5 +1,6 @@
 // 1. Use the D3 library to read in the JSON data
-const file = "covid2.json";
+const file = "/coviddata";
+// const file = "covid2.json";
 const dataPromise = d3.json(file);
 console.log("Data Promise: ", dataPromise);
 

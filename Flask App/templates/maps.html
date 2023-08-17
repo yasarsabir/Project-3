@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Leaflet Step-1</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin="" />
+
+<!-- logo plugin - TO BE FIXED!!!
+  <script type="text/javascript" src="{{url_for('static',filename='./js/logic.js')}}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}" /> -->
+  <!-- Our CSS -->
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='./css/style.css') }}">
+ <style>
+ 
+</style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/maps">Maps</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/vaccine">Vaccination Data</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+<!-- Centered Title -->
+
+ <div class="centered-title">
+        <h1>Project 3: Team 2: An interactive map of COVID data around the world</h1>
+    </div>
+
+
+<!-- Dropdown for selecting countries -->
+<select id="countryDropdown"></select>
+
+ 
+
+
+  <!-- Centered Subtitle -->
+  <h2 class="centered-subtitle">Click on the marker to find the number of deaths per million for each country</h2>
+
+
+  <!-- The div that holds our map -->
+  <div id="map"></div>
+
+  <!-- Centered Subtitle -->
+<h2 class="centered-subtitle">World map showing Country Specific Data</h2>
+<h2 class="centered-subtitle2">Click on the marker for more data</h2>
+
+  <!-- The div that holds a second map -->
+  <div id="secondmap"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+  <!-- D3 JavaScript -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- Our JavaScript -->
+  <script type="text/javascript" src="{{url_for('static',filename='./js/logic.js')}}"></script>
+</body>
+
+</html>
