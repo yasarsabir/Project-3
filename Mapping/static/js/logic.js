@@ -9,9 +9,17 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(myMap);
 
+//ATTEMPT AT MINIMAP PLUGIN
+// //vicinty map 
+// basemapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+// var basemap = new L.TileLayer(basemapUrl, {minZoom: 0, maxZoom:13});
+// var minMap = new L.Control.Minimap(basemap).addTo(myMap);
+
+
+
 // Country data
 let countries = [
-  {
+  {//name/death/location are all ATTRIBUTES of each element in the country list. 
       name: "Afghanistan",
       deaths: 192.76,
       location: [33.93911, 67.709953]
@@ -1116,29 +1124,37 @@ else {
     radius: Math.sqrt(countries[i].deaths) * 2000
   }).bindPopup(`<h1>${countries[i].name}</h1> <hr> <h3>Deaths to July 2023: ${countries[i].deaths} per million </h3>`).addTo(myMap);
 
-//CODE FOR DROPDOWN MENU NEVER WORKED
-  // // Add a click event listener to the circle marker
-// circle.on("click", function() {
-//     // Smoothly fly to the circle's location with increased zoom
-//     myMap.flyTo(circle.getLatLng(), 10);
-//   });
-
+//YELLOW are all function/methods that are either built in  or user defined.
 
 //DROPDOWN MENU
-  //Populate the dropdown with countries
-  let countryDropdown = document.getElementById("countryDropdown");
-  //countries.forEach(function (item) {
-  let item = countries[i]    
+  //Populate the dropdown with countries. document is a "reserved word", ie it is our database. YOu cannot 
+  //assign a variable for a reserved word. here document is like a dataframe.
+  let countryDropdown = document.getElementById("countryDropdown"); // this is similiar to python x = x + 5 
+//ie take x, and add 5 to it. here we are saying taking countryDropdown, and add to it. We are saying iterate through 
+//all the elements and create a new variable called countryDropdown
+  
+
+    let item = countries[i] 
+
   let option = document.createElement("option");
-      option.setAttribute('value', item.name);
-     let optionText = document.createTextNode(item.name);
-     option.appendChild(optionText);
-     countryDropdown.appendChild(option);
-  //});
+      option.setAttribute('value', item.name);  // n.b there were 3 attributes for each object/ELEMENT
+      //we are just specifying which attribute we want
+      // alternatively we could just do one line by stringing together the code :
+      //document.createElement("option").setAttribute('value', item.name)
+    // where createELEMENT is pulling each ELEMENT ie each country, and setATTRIBUTE is pulling each ATTRIBUTE ie name/death/location
+     
+    let optionText = document.createTextNode(item.name);// createTextNode says i don't want json I just 
+    //want to see the text ONLY wihtout any metadata associate with it
+    //metadata means all the other data about that ELEMENT
+     option.appendChild(optionText); //here we are passing the name of each country and CREATING IT for the dropdown
+     countryDropdown.appendChild(option); //here we are adding each line of the dropdown and PUTTING it into the dropdown
+     //appendCHild is another built in function which says, grab the previously defined code, the variable just define 
+     //is being passed as a PARAMETER into the paranthesis of the function. PARAMETER is a variable being used
+     //in a function. 
+  
 
 
-//   //need to add click, onEachFuture, to enable functionality. 
-// // THIS CODE NEEDS FIXING - this code listens when the user clicks on the dropdown
+ // this code listens when the user clicks on the dropdown
 
     countryDropdown.addEventListener('change', function() {
     var selectedCountry = countries.find((obj)=>obj.name===countryDropdown.value);
@@ -1150,11 +1166,46 @@ else {
   //  updateMap(selectedCountry)
   })
 
+// //MOUSE OVER/MOUSE OUT
+//  // This is called on each feature.
+//  onEachFeature: function(feature, layer) {
+//     // Set the mouse events to change the map styling.
+//     layer.on({        
 
+// // When a user's mouse cursor touches a map feature, the mouseover event calls this function, which makes that feature's opacity change to 90% so that it stands out.
+//         mouseover: function(event) {
+//             layer = event.target;
+//             layer.setStyle({
+//               fillOpacity: 0.9
+//             });
+//           },
+//           // When the cursor no longer hovers over a map feature (that is, when the mouseout event occurs), the feature's opacity reverts back to 50%.
+//           mouseout: function(event) {
+//             layer = event.target;
+//             layer.setStyle({
+//               fillOpacity: 0.5
+//             });
+//           },
+  
 
 
 }//this is the end of the for loop, within the forloop we have the marker, click on and colours code
 
+// let heatArray = [];
+
+//   for (let i = 0; i < countries.length; i++) {
+//     let deathTotal = countries[i].deaths;
+//     if (deathTotal) {
+//       //console.log(deathTotal);
+//       heatArray.push([deathTotal.deaths]);
+//     }
+
+//   }
+
+//   let heat = L.heatLayer(heatArray, {
+//     radius: 20,
+//     blur: 35
+//   }).addTo(myMap);
 
 
 //legend
@@ -1189,99 +1240,6 @@ legend.onAdd = function () {
   legend.addTo(myMap);
 
  
-
-  //DROPDOWN MENU ALL OF THIS CODE DOESn't WORK
-
-// // Assuming you have a Leaflet map set up
-// var map = L.map('map').setView([51.505, -0.09], 3);
-
-// // Sample data for countries with coordinates and popup content
-// var countriesData = [
-//   { name: 'Country 1', lat: 12.34, lng: 56.78, popupContent: 'Popup content for Country 1' },
-//   { name: 'Country 2', lat: 23.45, lng: 67.89, popupContent: 'Popup content for Country 2' },
-//   // ... other country objects ...
-// ];
-
-// // Populate the dropdown with country names
-// var dropdown = document.getElementById('countryDropdown');
-// countriesData.forEach(function(country) {
-//   var option = document.createElement('option');
-//   option.value = country.name;
-//   option.text = country.name;
-//   dropdown.appendChild(option);
-// });
-
-// Handle dropdown change event to update map and open popup
-// countryDropdown.addEventListener('change', function() {
-//   var selectedCountry = countryDropdown.value;
-//   var country = countries.find(function(country) {
-//     return country.name === selectedCountry;
-//   });
-
-//   if (country) {
-//     // Remove existing popups
-//     map.closePopup();
-    
-//     // Create a marker for the selected country
-//     var marker = L.marker([country.location]).addTo(map);
-    
-//     // Create a popup and associate it with the marker
-//     marker.bindPopup(country.popupContent).openPopup();
-    
-//     // Pan to the marker's location
-//     map.panTo([country.location]);
-//   }
-// });
-
-
-// // Handle dropdown change event to update map
-// var dropdown = document.getElementById('countryDropdown');
-// dropdown.addEventListener('change', function() {
-//   var selectedCountry = dropdown.value;
-//   updateMap(selectedCountry);})
-
-// //OPtion2// Handle dropdown change event to update map
-// countryDropdown.addEventListener('change', function () {
-//     var selectedCountry = this.value;
-//     var selectedCountryData = countries.find(function (item) {
-//         return item.name === selectedCountry;
-//     });
-
-//     if (selectedCountryData) {
-//         //var latlng = L.latLng(selectedCountryData.lat, selectedCountryData.lon);
-        
-//         // Set the map view to the selected country's coordinates
-//         map.setView(location, 12);
-//     }
-// });
-
-
-
-
-
-
-
-//THE CODE AFTER HERE DOESN'T WORK
-// // Handle dropdown change event to update map
-// countryDropdown.addEventListener('change', function () {
-//     var selectedCountry = this.value;
-//     var selectedCountryData = countries.find(function (item) {
-//         return item.name === selectedCountry;
-//     });
-
-//     if (selectedCountryData) {
-//         var location = L.location(selectedCountryData.location);
-        
-//         // Set the map view and open a popup
-//         map.setView(location, 6);
-        
-//         // Create and open a popup
-//         var popup = L.popup()
-//             .setLatLng(location)
-//             .setContent(selectedCountryData.deaths)
-//             .openOn(map);
-//     }
-// });
 
 
 
@@ -9403,47 +9361,6 @@ let data =
 
 
 
-    //CODE FOR DROPDOWN MENU NEVER WORKED
-  // // Add a click event listener to the circle marker
-// circle.on("click", function() {
-//     // Smoothly fly to the circle's location with increased zoom
-//     myMap.flyTo(circle.getLatLng(), 10);
-//   });
-
-
-// //DROPDOWN MENU
-//   //Populate the dropdown with countries
-//   var countryDropdown = document.getElementById('countryDropdown');
-//   countries.forEach(function (item) {
-//       var option = document.createElement('option');
-//       option.value = item.name;
-//       option.textContent = item.name;
-//       countryDropdown.appendChild(option);
-
-
-
-
-    // // // Conditionals for country total_vaccinations
-    // let color = "";
-    // if (data[i].total_vaccinations < 200000) {
-    //   color = "darkred";
-    // }
-    // else if (data[i].total_vaccinations < 400000) {
-    //   color = "red";
-    // }
-    // else if (data[i].total_vaccinations < 1000000) {
-    //   color = "orange";
-    // }
-    // else if (data[i].total_vaccinations < 10000000){
-    //   color = "yellow";
-    // }
-    // else if (data[i].total_vaccinations < 5000000) {
-    //   color = "green";
-    // }
-    // else {
-    //   color = "palegreen";
-    // }
-  
 
   // Add circles to the map.
   L.circle(data[i].location, {
@@ -9527,3 +9444,299 @@ legend.onAdd = function () {
   };
   // We add our legend to the map.
   legend.addTo(mysecondMap);
+
+
+  //ATTEMPTS TO ADD IN PLUG INS
+//button to export
+L.DomEvent.on
+(document.getElementById('export-btn'), 'click', function() 
+
+{
+    leafletImage(map, function(err, canvas)
+     {
+        var img = document.createElement('img');
+        var dimensions = map.getSize();
+        img.width = dimensions.x;
+        img.height = dimensions.y;
+        img.src = canvas.toDataURL();
+        window.open("").document.write(img.outerHTML);
+    });
+})  //this code references map, whereas the maps in my html are myMap or mysecondMap!??
+
+
+
+  //miniglobe in the corner
+//OPTION1
+// var miniMap = new L.Control.GlobeMiniMap().addTo(mysecondMap);
+
+//OPTION2
+//   var miniMap = new L.Control.GlobeMiniMap({
+//     //uncomment to assign colors
+//     // land:'#FFFF00',
+//     // water:'#3333FF',
+//     // marker:'#000000'
+//     topojsonSrc : 'static/js/world.json'
+//   }).addTo(myMap);
+
+
+
+//heatmap
+//var heat = 
+// L.heatLayer([
+// 	[50.5, 30.5, 0.2], // lat, lng, intensity
+// 	[50.6, 30.4, 0.5],
+	
+// ], {radius: 250}).addTo(myMap);
+
+//spotlight
+
+// var map = L.map(
+//     'map', {
+//         spotlight: true, // This one enables spotlight on the map
+//         scrollWheelZoom:false,
+//         zoomControl: false,
+//         boxZoom: false,
+//         doubleClickZoom: false,
+//         dragging: false
+//      }).setView([50.11703222529853, 8.679703474044802], 18);
+
+// //ALTERNATIVE METHOD     //map.spotlight.enable();
+
+// // Define default style for points (small black dot)
+// var pointStyle = {
+//     radius: 2,
+//     opacity: 0,
+//     fillColor: "#000000",
+//     fillOpacity: 1
+// }
+
+// // Add layer to map
+// var pointLayer = L.geoJSON(pointData, {
+//     pointToLayer: function (feature, latlng) {
+//         return L.circleMarker(latlng, pointStyle);
+//     }
+// }).addTo(map);
+
+// // Define a function which takes a leaflet latlng as input and returns a turf polygon geometry (in this case, a circle)
+// var dynamicCenterCircle = function (center) {
+//     return turf.circle(
+//         center,
+//         25,
+//         {"steps": 128, "units": "meters"}
+//     );
+// }
+
+// // Define a style for the spotlight polygon itself (in this case, a black ring)
+// var mySpotlightStyle = {
+//     color: "#000000",
+//     fillOpacity: 0
+// };
+
+// // Define a style for a leaflet point
+// var myHighlightStyle = {
+//         radius: 3,
+//         opacity: 0,
+//         fillColor: "#ff0000",
+//         fillOpacity: 1
+// };
+
+// // Define a spotlight object and add it to the map using the ".addTo()" method
+// var mySpotlight = L.spotlight({
+//     spotlightType: "circleMarker",
+//     highlightStyle: myHighlightStyle, // Style with which highlighted points shall be drawn
+//     spotlightShape: dynamicCenterCircle, // Function which takes leaflet point and returns a turf polygon
+//     spotlightStyle: mySpotlightStyle, // Style with which the spotlight itself shall be drawn
+//     targetLayer: pointLayer // Layer onto which to apply the spotlight
+// }).addTo(map);
+
+
+
+
+//WORK ON LAYERS
+
+
+// An array that will store the created cityMarkers
+let countriesMarkers = [];
+
+for (let i = 0; i < countries.length; i++) {
+  // loop through the cities array, create a new marker, and push it to the cityMarkers array
+  countriesMarkers.push(
+    L.marker(countries[i].location).bindPopup("<h1>" + countries[i].name + "</h1>")
+  );
+}
+
+// Add all the cityMarkers to a new layer group.
+// Now, we can handle them as one group instead of referencing each one individually.
+let countriesLayer = L.layerGroup(countriesMarkers);
+
+// Define variables for our tile layers.
+let street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+})
+
+let topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+
+// Only one base layer can be shown at a time.
+let baseMaps = {
+  Street: street,
+  Topography: topo
+};
+
+// Overlays that can be toggled on or off
+let overlayMaps = {
+  Cities: countriesLayer
+};
+
+// // Create a map object, and set the default layers.
+// let myMap = L.map("map", {
+//   center: [46.2276, 2.2137],
+//   zoom: 6,
+//   layers: [street, cityLayer]
+// });
+
+// Pass our map layers into our layer control.
+// Add the layer control to the map.
+L.control.layers(baseMaps, overlayMaps).addTo(myMap);
+
+
+
+
+//ATTEMPT AT IMAGE EXPORT PLUGIN VERSION 2
+// var map = L.mapbox.map('map', 'myMap').setView([38.9, -77.03], 14);
+// leafletImage(map, function(err, canvas) {
+//     // now you have canvas
+//     // example thing to do with that canvas:
+//     var img = document.createElement('img');
+//     var dimensions = map.getSize();
+//     img.width = dimensions.x;
+//     img.height = dimensions.y;
+//     img.src = canvas.toDataURL();
+//     document.getElementById('images').innerHTML = '';
+//     document.getElementById('images').appendChild(img);
+// });
+
+
+//ATTEMPT AT CLUSTERING the markers
+
+// const markers = L.markerClusterGroup();
+// L.marker([21.521757, -77.781167]).addTo(markers);
+// L.marker([17.060816, -61.796428]).addTo(markers);
+// L.marker([18.220554, -63.068615]).addTo(markers);
+// markers.addTo(myMap);
+
+
+//attempt AT ADDING GRID LINES - IE A GRATICULE
+
+// // Add a basic graticule with divisions every 20 degrees
+// // as a layer on a map
+// L.graticule().addTo(myMap);
+
+// // Specify divisions every 10 degrees
+// L.graticule({ interval: 10 }).addTo(myMap);
+
+// // Specify bold red lines instead of thin grey lines
+// L.graticule({
+//     style: {
+//         color: '#f00',
+//         weight: 10
+//     }
+// }).addTo(myMap);
+
+//THE FOLLOWING IS THE CODE FOR LOGO, which is in a seperate js file, but my computer can't seem to read it. 
+// a simple control to display a logo and credits in the corner of the map, with some neat interactive behavior
+// in Leaflet tradition, a shortcut method is also provided, so you may use either version:
+//     new L.CreditsControl(options)
+//     L.controlCredits(options)
+L.controlCredits = function (options) {
+    return new L.CreditsControl(options);
+}
+
+L.CreditsControl = L.Control.extend({
+    options: {
+        position: 'bottomright'
+    },
+    initialize: function (options) {
+        const settings = Object.assign({
+            width: '50px',
+            height: '50px',
+        }, options);
+
+        if (! settings.expandcontent) throw "L.CreditsControl missing required option: expandcontent";
+        if (! settings.imageurl)      throw "L.CreditsControl missing required option: imageurl";
+       // if (! settings.imagealt)       throw "L.CreditsControl missing required option: alt text";
+        if (! settings.tooltip)       throw "L.CreditsControl missing required option: tooltip";
+
+        L.setOptions(this, settings);
+    },
+    onAdd: function (map) {
+        this._map = map;
+        this._container = L.DomUtil.create('div', 'leaflet-credits-control');
+
+        const contentdivid = `leaflet-credits-control-expandcontent-${Math.round(1000000 * Math.random())}`;
+
+        this._content = L.DomUtil.create('div', 'leaflet-credits-control-expandcontent', this._container);
+        this._content.id = contentdivid;
+        this.setHtml(this.options.expandcontent);
+
+
+        this._button = L.DomUtil.create('button', 'leaflet-credits-control', this._container);
+        this._button.type = 'button';
+        this._button.title = this.options.tooltip;
+        if (this.options.width)  this._button.style.width = this.options.width;
+        if (this.options.height) this._button.style.height = this.options.height;
+        this._button.setAttribute('aria-controls', contentdivid);
+
+        const logo = L.DomUtil.create('img', 'leaflet-logo', this._button);
+        logo.setAttribute('src', this.options.imageurl);
+        logo.setAttribute('alt', this.options.imagealt);
+        if (this.options.width) logo.style.width = this.options.width;
+        if (this.options.height) logo.style.height = this.options.height;
+
+
+        // click image button = toggle left-side expandcontent
+        L.DomEvent.addListener(this._button, 'click', () => {
+            this.toggleUi();
+        });
+
+        // keep mouse events from falling through to the map: don't drag-pan or double-click the map on accident
+        L.DomEvent.disableClickPropagation(this._container);
+        L.DomEvent.disableScrollPropagation(this._container);
+
+        // collapse by default
+        this.collapseUi();
+
+        // all done
+        return this._container;
+    },
+    toggleUi: function () {
+        if (this.isExpanded()) this.collapseUi();
+        else this.expandUi();
+    },
+    expandUi: function () {
+        L.DomUtil.removeClass(this._container, 'leaflet-credits-control-collapsed');
+        this._button.setAttribute('aria-expanded', 'true');
+    },
+    collapseUi: function () {
+        L.DomUtil.addClass(this._container, 'leaflet-credits-control-collapsed');
+        this._button.setAttribute('aria-expanded', 'false');
+    },
+    isExpanded: function () {
+        return ! L.DomUtil.hasClass(this._container, 'leaflet-credits-control-collapsed');
+    },
+    setHtml: function (html) {
+        this._content.innerHTML = html;
+    }
+});
+
+
+
+//CODE for logo plugin
+L.controlCredits({
+    imageurl: './uoblogo.png',
+    tooltip: 'Made by University of Birmingahm',
+    width: '80px',
+    height: '80px',
+    expandcontent: 'Interactive mapping<br/>by <a href="https://www.greeninfo.org/" target="_blank">GreenInfo Network</a>',
+}).addTo(myMap);
