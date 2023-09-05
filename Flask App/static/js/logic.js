@@ -9734,7 +9734,8 @@ L.CreditsControl = L.Control.extend({
 
 //CODE for logo plugin
 L.controlCredits({
-    imageurl: './uoblogo.png',
+    // imageurl: "{{url_for('static',filename='./images/uoblogo.png')}}",
+    imageurl: "./static/images/uoblogo.png",
     tooltip: 'Made by University of Birmingahm',
     width: '80px',
     height: '80px',

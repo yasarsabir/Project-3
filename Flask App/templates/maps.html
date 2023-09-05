@@ -5,29 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Leaflet Step-1</title>
+  <title>Maps</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin="" />
+  <!--pluginfor clustering-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.0/MarkerCluster.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.0/MarkerCluster.Default.css" />
 
-<!-- logo plugin - TO BE FIXED!!!
-  <script type="text/javascript" src="{{url_for('static',filename='./js/logic.js')}}"></script>
-  <link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}" /> -->
-  <!-- Our CSS -->
-  <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-  crossorigin="" /> -->
-<!-- 
-  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-  crossorigin=""></script> -->
-<!-- 
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> -->
 
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="static/css/style.css"> -->
 
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='./css/style.css') }}">
  <style>
@@ -68,23 +59,14 @@
 <!-- Dropdown for selecting countries -->
 <select id="countryDropdown"></select>
 
-<!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
-  <!-- D3 JavaScript -->
-  <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
-  <!-- Our JavaScript -->
-  <!-- <script type="text/javascript" src="static/js/logic.js"></script> --> -->
- 
-
-
   <!-- Centered Subtitle -->
   <h2 class="centered-subtitle">Click on the marker to find the number of deaths per million for each country</h2>
 
 
   <!-- The div that holds our map -->
   <div id="map"></div>
-
+<!--export button plug in -->
+<button id="export-btn">Export</button>
   <!-- Centered Subtitle -->
 <h2 class="centered-subtitle">World map showing Country Specific Data</h2>
 <h2 class="centered-subtitle2">Click on the marker for more data</h2>
@@ -97,8 +79,13 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.0/leaflet.markercluster.js"></script>
   <!-- D3 JavaScript -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+   <!-- polyfill.io is the library for using newer JavaScript features (such as Object.assign) in older browers. -->
+   <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
   <!-- Our JavaScript -->
   <script type="text/javascript" src="{{url_for('static',filename='./js/logic.js')}}"></script>
 </body>
